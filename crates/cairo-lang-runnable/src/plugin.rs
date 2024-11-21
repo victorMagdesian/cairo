@@ -37,7 +37,7 @@ const IMPLICIT_PRECEDENCE: &[&str] = &[
     "core::circuit::MulMod",
 ];
 
-#[derive(Debug, Default)]
+#[derive(Debug, Default, PartialEq, Eq, Hash)]
 #[non_exhaustive]
 struct RunnablePlugin;
 

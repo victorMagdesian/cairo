@@ -16,7 +16,7 @@ use num_bigint::{BigInt, Sign};
 pub const FELT252_BYTES: usize = 31;
 
 /// Macro for writing into a formatter.
-#[derive(Debug, Default)]
+#[derive(Debug, Default, PartialEq, Eq, Hash)]
 pub struct WriteMacro;
 impl NamedPlugin for WriteMacro {
     const NAME: &'static str = "write";
@@ -48,7 +48,7 @@ impl InlineMacroExprPlugin for WriteMacro {
             ```cairo
             let f: core::fmt::Formatter = Default::default();
             write!(f, "hello"); // `f` contains "hello".
-            let world: ByteArray = "world"; 
+            let world: ByteArray = "world";
             write!(f, "hello {}", world_ba); // `f` contains "hellohello world".
             write!(f, "hello {world_ba}"); // `f` contains "hellohello worldhello world".
             let (x, y) = (1, 2);
@@ -61,7 +61,7 @@ impl InlineMacroExprPlugin for WriteMacro {
 }
 
 /// Macro for writing into a formatter with an additional new line.
-#[derive(Debug, Default)]
+#[derive(Debug, Default, PartialEq, Eq, Hash)]
 pub struct WritelnMacro;
 impl NamedPlugin for WritelnMacro {
     const NAME: &'static str = "writeln";
@@ -93,7 +93,7 @@ impl InlineMacroExprPlugin for WritelnMacro {
             ```cairo
             let f: core::fmt::Formatter = Default::default();
             writeln!(f, "hello"); // `f` contains "hello\n".
-            let world: ByteArray = "world"; 
+            let world: ByteArray = "world";
             writeln!(f, "hello {}", world_ba); // `f` contains "hello\nhello world\n".
             writeln!(f, "hello {world_ba}"); // `f` contains "hello\nhello world\nhello world\n".
             let (x, y) = (1, 2);

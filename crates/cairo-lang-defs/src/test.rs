@@ -204,7 +204,7 @@ fn test_submodules() {
     ]);
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq, Hash)]
 struct DummyPlugin;
 impl MacroPlugin for DummyPlugin {
     fn generate_code(
@@ -296,7 +296,7 @@ fn test_plugin_remove_original() {
 
 /// If the original item is a function that is marked with #[remove_orig], only removes it, without
 /// generating any new code.
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq, Hash)]
 struct RemoveOrigPlugin;
 impl MacroPlugin for RemoveOrigPlugin {
     fn generate_code(
@@ -322,7 +322,7 @@ impl MacroPlugin for RemoveOrigPlugin {
 
 /// Changes a function 'foo' to 'bar' if annotated with #[foo_to_bar]. Doesn't remove the original
 /// item.
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq, Hash)]
 struct FooToBarPlugin;
 impl MacroPlugin for FooToBarPlugin {
     fn generate_code(

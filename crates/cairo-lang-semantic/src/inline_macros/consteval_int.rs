@@ -10,7 +10,7 @@ use cairo_lang_syntax::node::{TypedStablePtr, TypedSyntaxNode, ast};
 use indoc::indoc;
 use num_bigint::BigInt;
 
-#[derive(Debug, Default)]
+#[derive(Debug, Default, PartialEq, Eq, Hash)]
 pub struct ConstevalIntMacro;
 impl NamedPlugin for ConstevalIntMacro {
     const NAME: &'static str = "consteval_int";
@@ -67,17 +67,17 @@ impl InlineMacroExprPlugin for ConstevalIntMacro {
         Some(
             indoc! {r#"
             Evaluates an integer expression at compile time.
-            The `consteval_int!` macro computes an integer expression \ 
+            The `consteval_int!` macro computes an integer expression \
             during compilation and replaces itself with the computed value.
             This macro is deprecated; use const expressions directly instead.
-    
+
             # Syntax
             ```cairo
             consteval_int!(expression)
             ```
             # Parameters
             - `expression`: An integer expression to evaluate at compile time.
-    
+
             # Examples
             ```cairo
             let x = consteval_int!(2 + 3); // Equivalent to: let x = 5;

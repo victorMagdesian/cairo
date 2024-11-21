@@ -66,7 +66,7 @@ fn try_handle_simple_panic(
 }
 
 /// Macro for panicking with a format string.
-#[derive(Default, Debug)]
+#[derive(Default, Debug, PartialEq, Eq, Hash)]
 pub struct PanicMacro;
 impl NamedPlugin for PanicMacro {
     const NAME: &'static str = "panic";
@@ -136,9 +136,9 @@ impl InlineMacroExprPlugin for PanicMacro {
         Some(
             indoc! {r#"
             Terminates the program immediately with an error message.
-            The `panic!` macro halts execution when an unrecoverable error \ 
-            occurs. It prints an error message and exits the program. \ 
-            Accepts a format string and arguments, similar to `format!`, \ 
+            The `panic!` macro halts execution when an unrecoverable error \
+            occurs. It prints an error message and exits the program. \
+            Accepts a format string and arguments, similar to `format!`, \
             for detailed error messages.
 
             # Syntax
@@ -167,7 +167,7 @@ impl InlineMacroExprPlugin for PanicMacro {
             assert!(x >= 0, "Invalid value: x = {x}");
             // Panics with "Invalid value: x = -1."
             ```
-    
+
             # Notes
             - Use `panic!` only for unrecoverable errors.
             - In library code, prefer returning `Result` or `Option` to let callers handle errors.

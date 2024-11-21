@@ -12,7 +12,7 @@ use cairo_lang_syntax::node::{TypedStablePtr, TypedSyntaxNode, ast};
 use indoc::{formatdoc, indoc};
 
 /// Macro for assertion.
-#[derive(Default, Debug)]
+#[derive(Default, Debug, PartialEq, Eq, Hash)]
 pub struct AssertMacro;
 impl NamedPlugin for AssertMacro {
     const NAME: &'static str = "assert";
@@ -116,8 +116,8 @@ impl InlineMacroExprPlugin for AssertMacro {
         Some(
             indoc! {r#"
             Asserts that a condition is true at runtime.
-            The `assert!` macro checks a boolean expression; if it evaluates to `false`, \ 
-            it panics with an optional custom error message. Useful for debugging and \ 
+            The `assert!` macro checks a boolean expression; if it evaluates to `false`, \
+            it panics with an optional custom error message. Useful for debugging and \
             ensuring conditions hold during execution.
 
             # Syntax
@@ -130,7 +130,7 @@ impl InlineMacroExprPlugin for AssertMacro {
             - `condition`: A boolean expression to evaluate.
             - `format_string` (optional): A string literal for format placeholders.
             - `args` (optional): Values for placeholders in `format_string`.
-    
+
             # Examples
             ```cairo
             assert!(2 + 2 == 4); // Passes, does nothing.

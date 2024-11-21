@@ -11,7 +11,7 @@ use indoc::{formatdoc, indoc};
 use super::write::{WriteMacro, WritelnMacro};
 
 /// Macro for printing.
-#[derive(Debug, Default)]
+#[derive(Debug, Default, PartialEq, Eq, Hash)]
 pub struct PrintMacro;
 impl NamedPlugin for PrintMacro {
     const NAME: &'static str = "print";
@@ -39,7 +39,7 @@ impl InlineMacroExprPlugin for PrintMacro {
             # Examples
             ```cairo
             println!(\"hello\"); // Prints "hello".
-            let world: ByteArray = "world"; 
+            let world: ByteArray = "world";
             println!("hello {}", world_ba); // Prints "hello world".
             println!("hello {world_ba}"); // Prints "hello world".
             ```
@@ -50,7 +50,7 @@ impl InlineMacroExprPlugin for PrintMacro {
 }
 
 /// Macro for printing with a new line.
-#[derive(Debug, Default)]
+#[derive(Debug, Default, PartialEq, Eq, Hash)]
 pub struct PrintlnMacro;
 impl NamedPlugin for PrintlnMacro {
     const NAME: &'static str = "println";
@@ -78,7 +78,7 @@ impl InlineMacroExprPlugin for PrintlnMacro {
             ```cairo
             println!(); // Prints an empty line.
             println!(\"hello\"); // Prints "hello".
-            let world: ByteArray = "world"; 
+            let world: ByteArray = "world";
             println!("hello {}", world_ba); // Prints "hello world".
             println!("hello {world_ba}"); // Prints "hello world".
             ```

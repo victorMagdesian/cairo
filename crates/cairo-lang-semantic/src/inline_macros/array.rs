@@ -8,7 +8,7 @@ use cairo_lang_syntax::node::db::SyntaxGroup;
 use cairo_lang_syntax::node::{TypedSyntaxNode, ast};
 use indoc::indoc;
 
-#[derive(Debug, Default)]
+#[derive(Debug, Default, PartialEq, Eq, Hash)]
 pub struct ArrayMacro;
 impl NamedPlugin for ArrayMacro {
     const NAME: &'static str = "array";
@@ -55,16 +55,16 @@ impl InlineMacroExprPlugin for ArrayMacro {
         Some(
             indoc! {r#"
             Creates a new array containing the provided elements.
-            The `array!` macro allows you to create an array by specifying a list of elements. \ 
+            The `array!` macro allows you to create an array by specifying a list of elements. \
             The elements are added to a new array in the order they are provided.
-    
+
             # Syntax
             ```cairo
             array![element1, element2, element3, ...]
             ```
             # Returns
             An array containing the specified elements.
-    
+
             # Examples
             ```cairo
             let arr = array![]; // Creates an empty array.

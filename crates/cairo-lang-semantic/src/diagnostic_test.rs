@@ -67,7 +67,7 @@ fn test_missing_module_file() {
 // A dummy plugin that adds an inline module with a semantic error (per function
 // in the original module).
 // Used to test error location inside plugin generated inline modules.
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq, Hash)]
 struct AddInlineModuleDummyPlugin;
 
 impl MacroPlugin for AddInlineModuleDummyPlugin {
